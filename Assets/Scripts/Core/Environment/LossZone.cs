@@ -1,21 +1,25 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Core.Environment
 {
     public class LossZone : MonoBehaviour
     {
-        [SerializeField] private BoxCollider _collider;
+        [SerializeField] private CounterScore _counterScore;
 
-        public void SetActiveZone(bool toggleState)
-        {
-            _collider.enabled = toggleState;
-        }
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Cube.Cube cube))
             {
-                print("конец игры");
+                if (cube.IsTapped == false)
+                {
+                    cube.IsTapped = true;
+                }
+                else
+                {
+                    _counterScore.SetText("Game Over");
+                }
             }
         }
     }

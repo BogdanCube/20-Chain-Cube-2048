@@ -16,14 +16,18 @@ namespace Core.Cube.Level
             {
                 var currentData = _data[level];
                 
-                _texts.ForEach(text => text.text = currentData.Number.ToString());
+                _texts.ForEach(text => text.text = currentData.Score.ToString());
                 _meshRenderer.material.color = currentData.Color;
             }
             else
             {
                 print("конец");
             }
+        }
 
+        public DataLevelCube GetCurrentData(int level)
+        {
+            return _data[level];
         }
     }
 }

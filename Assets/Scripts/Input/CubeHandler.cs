@@ -10,7 +10,9 @@ namespace InputCube
         [SerializeField] private Camera _camera;
         [SerializeField] private LossZone _lossZone;
         [SerializeField] private SpawnerCube _spawner;
+        [SerializeField] private CounterLaunch _counterLaunch;
         private Cube _currentCube;
+        
         private void Update()
         {
             if (Input.GetMouseButton(0))
@@ -49,6 +51,7 @@ namespace InputCube
             _currentCube.Movement.Launch();
             _currentCube = null;
             _spawner.Spawn();
+            _counterLaunch.AddCount();
         }
     }
 }
